@@ -6,10 +6,11 @@
 name: Containerize
 
 on:
+  release:
+    types: [published]
   push:
     branches:
-      # - 'main'
-      - 'containerization'  # For testing, to be removed.
+      - 'test/**'
 
 jobs:
   docker:
