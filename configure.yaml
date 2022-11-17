@@ -19,13 +19,13 @@ refine_along_coastlines:
     averaging: 25          # km, smoothing coastline
 
 regions:
-    - name: Denmark
-      path: './kml/Denmark.kml' # path to the .kml file
+    - name: Baffin Bay
+      path: './kml/Baffin_Bay.kml' # path to the .kml file
       resolution: 100 # resolution of the inner region
       precision: 10 # each section of polygon will by splitted in `precision` nuber of times
       order: true # If True, fist polygon is internal and second is external. I False, then other way round. 
-    - name: Gibraltar
-      path: './kml/Gibraltar.kml'
+    - name: A second region
+      path: './kml/Nares.kml'
       resolution: 100
       precision: 10
       order: true
@@ -41,5 +41,4 @@ levels: [0.0, -5.0, -10.0, -15.0, -20.0, -25.0, -30.0, -35.0,
         -1500.0, -1700.0, -1920.0, -2150.0, -2400.0, -2650.0,
         -2900.0, -3150.0, -3400.0, -3650.0, -3900.0, -4150.0,
         -4400.0, -4650.0, -4900.0, -5150.0, -5400.0, -5650.0,
-        -6000.0, -6350.0]
-    
+        -6000.0, -6350.0] 

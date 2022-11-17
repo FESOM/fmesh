@@ -5,13 +5,13 @@ Created on Sat Jul 30 13:00:19 2022
 @author: SKirillov
 """
 
+import argparse
 import os
 import pickle
-import sys
 from pathlib import Path
 
+import art
 import cartopy.crs as ccrs
-import cartopy.feature as cf
 import geopy.distance as dist
 import jigsawpy
 import netCDF4 as nc
@@ -24,6 +24,8 @@ from utils import (gradapproach, inside_outside, interpolate_lonlat,
 
 # CREATING THE DICTIONARY OF NODES WITH INDICES OF LINKED ELEMENTS ------------
 # i.e. { 234: [23, 24, 265, 4350, 4352], 235: [23, 24, 123, 990], etc. }
+
+__version__ = "1.0.0"
 
 
 def create_tria_in_node_dictionary(triangles):
@@ -832,9 +834,26 @@ def cut_land(settings, mesh, depth_limit=-20):
             file.write("5\n")
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        prog="fmesh",
+        description="A FESOM mesh generator",
+        epilog=f"Version: {__version__}",
+    )
+    parser.add_argument(
+        "config_file",
+        help="The location of your configure.yaml file, describing what fmesh should do.",
+    )
+    return parser.parse_args()
+
+
 def main():
-    with open("./configure.yaml") as file:
-        settings = yaml.load(file, Loader=yaml.FullLoader)
+    art.tprint("FMESH")
+    print("The FESOM Mesh Generator")
+
+    args = parse_args()
+    settings = yaml.load(Path(args.config_file).read_text(), Loader=yaml.SafeLoader)
+
 
     print(settings["levels"])
 
